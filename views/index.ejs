@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    
+    <h2 class="mt-4 mb-3">Financial Data</h2>
+
+
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Ticker</th>
+                <th>Last Price</th>
+                <th>Market Cap</th>
+                <th>Year High</th>
+                <th>Year Low</th>
+                <th>Volume</th>
+                <th>Sector</th>
+                <th>Industry</th>
+                <th>EPS</th>
+                <th>PE Ratio</th>
+                <th>ROE</th>
+                <th>Debt/Equity</th>
+                <th>Profit Margin</th>
+                <th>Current Ratio</th>
+                <th>Total Revenue</th>
+                <th>Volatility</th>
+                <th>Liquidity</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% stocksList.forEach(stock => { %>
+                <tr>
+                    <td><%= stock.ticker %></td>
+                    <td><%= stock.last_price %></td>
+                    <td><%= stock.market_cap %></td>
+                    <td><%= stock.year_high %></td>
+                    <td><%= stock.year_low %></td>
+                    <td><%= stock.volume %></td>
+                    <td><%= stock.sector %></td>
+                    <td><%= stock.industry %></td>
+                    <td><%= stock.eps %></td>
+                    <td><%= stock.pe_ratio %></td>
+                    <td><%= stock.roe %></td>
+                    <td><%= stock.debt_to_equity %></td>
+                    <td><%= stock.profit_margin %></td>
+                    <td><%= stock.current_ratio %></td>
+                    <td><%= stock.total_revenue %></td>
+                    <td><%= stock.volatility %></td>
+                    <td><%= stock.liquidity %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+
+<table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Ticker</th>
+                <th>Company</th>
+
+                <th>Sentiment Score</th>
+                <th>Confidence %</th>
+                <th>Investability Score</th>
+
+                <th>Reported Revenue</th>
+                <th>YoY Growth</th>
+                <th>Market % Change</th>
+
+                <th>CAGR (2021–2024)</th>
+                <th>Forecast Revenue</th>
+
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            <% socialList.forEach(item => { %>
+                <tr>
+
+                    <td><%= item.ticker %></td>
+                    <td><%= item.company %></td>
+
+                    <td><%= item.sentiment?.sentiment_score %></td>
+                    <td><%= item.sentiment?.confidence_pct %></td>
+                    <td><%= item.sentiment?.investability_score %></td>
+
+                   
+
+                    <td>
+                        <% for (const year in item.financials?.reported_revenue) { %>
+                            <strong><%= year %>:</strong>
+                            <%= item.financials.reported_revenue[year] %><br>
+                        <% } %>
+                    </td>
+
+                    <td>
+                        <% for (const year in item.financials?.yoy_growth_pct) { %>
+                            <strong><%= year %>:</strong>
+                            <%= item.financials.yoy_growth_pct[year] %><br>
+                        <% } %>
+                    </td>
+
+                    <td>
+                        <% for (const year in item.financials?.market_percentage_change) { %>
+                            <strong><%= year %>:</strong>
+                            <%= item.financials.market_percentage_change[year] %><br>
+                        <% } %>
+                    </td>
+
+                    
+                    <td><%= item.financials?.confidence_pct %></td>
+
+                    <td>
+                        <% for (const year in item.financials?.forecast_revenue) { %>
+                            <strong><%= year %>:</strong>
+                            <%= item.financials.forecast_revenue[year] %><br>
+                        <% } %>
+                    </td>
+
+                    
+
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+
+
+
+
+</body>
+</html>
